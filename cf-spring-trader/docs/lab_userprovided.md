@@ -11,6 +11,14 @@ In order for our microservices to be able to connect to the Registry service, we
 ```
 $ cd $COURSE_HOME/cf-spring-trader
 $ ./create-services.sh
+Creating service instance trader-db in org instructor-org / space development as instructor...
+OK
+Creating service instance trader-registry in org instructor-org / space development as instructor...
+OK
+Creating service instance config-server in org instructor-org / space development as instructor...
+OK
+Creating service instance trader-dashboard in org instructor-org / space development as instructor...
+OK
 ```
 
 This simple script creates 4 services:
