@@ -74,15 +74,15 @@ In this section, you will drain logs to a very simple provider called https://pa
 
 . Visit https://papertrailapp.com and create a free account.
 
-. Login to your account and add your first system:
+. Login to your account and _Add your first system_:
 +
 image::papertrail_1.png[]
 
-. Click on ``Heroku'':
+. Click on _Alternatives_:
 +
 image::papertrail_2.png[]
 
-. Choose ``I use Heroku'' and provide a name:
+. Choose _I use Heroku_ and provide a name like "cloud-workshop-logs":
 +
 image::papertrail_3.png[]
 
@@ -129,7 +129,7 @@ Cloud Foundry's http://docs.cloudfoundry.org/concepts/architecture/#hm9k[Heatlh 
 $ cf logs workshop
 ----
 
-. If you do not have more than one application instance running, execute the scale command to scale to 2 or more application instances.  Visit the application in the browser, and click on the ``Kill Switch'' button. This button will trigger a JVM exit with an error code (`System.exit(1)`), causing the Health Manager to observe an application instance crash:
+. If you do not have more than one application instance running, execute the scale command to scale to 2 or more application instances.  Visit the application in the browser, and click on the _Kill_ button. This button will trigger a JVM exit with an error code (`System.exit(1)`), causing the Health Manager to observe an application instance crash:
 +
 image::lab.png[]
 
@@ -142,18 +142,24 @@ Also, if you're paying attention to the log tail, you'll see some interesting lo
 +
 ====
 ----
-2015-08-11T09:10:03.25-0400 [App/0]      OUT WARN : com.gopivotal.cf.workshop.web.CloudFoundryWorkshopController - *** The system is shutting down. ***  <1>
-2015-08-11T09:10:03.26-0400 [App/0]      OUT [CONTAINER] org.apache.coyote.http11.Http11NioProtocol         INFO    Pausing ProtocolHandler ["http-nio-61280"]
-2015-08-11T09:10:03.27-0400 [App/0]      OUT [CONTAINER] org.apache.catalina.core.StandardService           INFO    Stopping service Catalina
-2015-08-11T09:10:03.27-0400 [App/0]      OUT [CONTAINER] org.apache.catalina.core.StandardWrapper           INFO    Waiting for 1 instance(s) to be deallocated for Servlet [appServlet]
-2015-08-11T09:10:04.28-0400 [App/0]      OUT [CONTAINER] org.apache.catalina.core.StandardWrapper           INFO    Waiting for 1 instance(s) to be deallocated for Servlet [appServlet]
-2015-08-11T09:10:05.28-0400 [App/0]      OUT [CONTAINER] org.apache.catalina.core.StandardWrapper           INFO    Waiting for 1 instance(s) to be deallocated for Servlet [appServlet]
+2016-03-23T15:50:05.000+00:00 [APP] OUT 2016-03-23 15:50:05.186 WARN 14 --- [nio-8080-exec-4] i.p.w.w.CloudFoundryWorkshopController : *** The system is shutting down. *** <1>
+2016-03-23T15:51:39.000+00:00 [RTR] OUT workshop-haunted-slickenside.cfapps.io - [23/03/2016:15:51:38 +0000] "GET / HTTP/1.1" 200 0 5579 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.87 Safari/537.36" 10.10.2.247:49485 x_forwarded_for:"96.35.38.180" x_forwarded_proto:"http" vcap_request_id:eb21d1c7-e20e-403d-6010-06c0cf84c6d3 response_time:0.556708687 app_id:108c3e83-88ff-43af-a5b6-b356d346e0b8
+2016-03-23T15:55:32.000+00:00 [APP] OUT 2016-03-23 15:55:32.659 INFO 14 --- [ main] s.c.a.AnnotationConfigApplicationContext : Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@5b6142d8: startup date [Wed Mar 23 15:55:32 UTC 2016]; root of context hierarchy
+2016-03-23T15:55:33.000+00:00 [APP] OUT 2016-03-23 15:55:33.164 INFO 14 --- [ main] trationDelegate$BeanPostProcessorChecker : Bean 'encryptionBootstrapConfiguration' of type [class org.springframework.cloud.bootstrap.encrypt.EncryptionBootstrapConfiguration$$EnhancerBySpringCGLIB$$ef27ea2b] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2016-03-23T15:55:33.000+00:00 [APP] OUT 2016-03-23 15:55:33.778 WARN 14 --- [ main] .i.s.PathMatchingResourcePatternResolver : Skipping [/home/vcap/app/.java-buildpack/spring_auto_reconfiguration/spring_auto_reconfiguration-1.10.0_RELEASE.jar] because it does not denote a directory
 ...
-2015-08-11T09:10:05.83-0400 [RTR/0]      OUT adam-app.vert.fe.gopivotal.com - [11/08/2015:13:10:03 +0000] "GET /kill HTTP/1.1" 502 0 "https://adam-app.vert.fe.gopivotal.com/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_4) AppleWebKit/600.7.12 (KHTML, like Gecko) Version/8.0.7 Safari/600.7.12" 10.68.105.10:38348 x_forwarded_for:"10.68.248.58" vcap_request_id:37fc1845-1745-48bd-68e6-612dc6bcfb00 response_time:2.641058355 app_id:347c3d6b-e386-439f-8fc8-a561d39ea7bb  <2>
-2015-08-11T09:10:05.88-0400 [API/0]      OUT App instance exited with guid 347c3d6b-e386-439f-8fc8-a561d39ea7bb payload: {"cc_partition"=>"default", "droplet"=>"347c3d6b-e386-439f-8fc8-a561d39ea7bb", "version"=>"4f410012-28ec-452e-8ce7-0b460ebb61f9", "instance"=>"daf3174ddf5740069c1ed49f8733d77f", "index"=>0, "reason"=>"CRASHED", "exit_status"=>255, "exit_description"=>"app instance exited", "crash_timestamp"=>1439298605}  <3>
+2016-03-23T15:55:26.000+00:00 [RTR] OUT workshop-haunted-slickenside.cfapps.io - [23/03/2016:15:55:24 +0000] "GET /kill HTTP/1.1" 502 0 67 "http://workshop-haunted-slickenside.cfapps.io/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.87 Safari/537.36" 10.10.2.247:60563 x_forwarded_for:"96.35.38.180" x_forwarded_proto:"http" vcap_request_id:8059d1b6-3411-432b-4a4a-1c9dad7cba04 response_time:2.334086126 app_id:108c3e83-88ff-43af-a5b6-b356d346e0b8
+2016-03-23T15:50:05.000+00:00 [APP] OUT 2016-03-23 15:50:05.435 INFO 14 --- [ Thread-2] o.s.c.support.DefaultLifecycleProcessor : Stopping beans in phase 0 <2>
+2016-03-23T15:48:06.000+00:00 [RTR] OUT workshop-haunted-slickenside.cfapps.io - [23/03/2016:15:48:06 +0000] "GET / HTTP/1.1" 200 0 5579 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.87 Safari/537.36" 10.10.2.247:9755 x_forwarded_for:"96.35.38.180" x_forwarded_proto:"http" vcap_request_id:ad88d9d3-f5d2-4b74-67ba-cd084ac1c7bc response_time:0.501049717 app_id:108c3e83-88ff-43af-a5b6-b356d346e0b8
+2016-03-23T15:50:08.000+00:00 [CELL] OUT Exit status 0
+2016-03-23T15:55:33.000+00:00 [APP] OUT =========|_|==============|___/=/_/_/_/
+2016-03-23T15:55:36.000+00:00 [APP] OUT 2016-03-23 15:55:36.031 INFO 14 --- [ main] edisCloudServiceBeanFactoryPostProcessor : Skipping auto-reconfiguring beans of type org.springframework.data.redis.connection.RedisConnectionFactory
+2016-03-23T15:55:37.000+00:00 [APP] OUT 2016-03-23 15:55:37.469 INFO 14 --- [ost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/] : Initializing Spring embedded WebApplicationContext
+2016-03-23T15:55:38.000+00:00 [APP] OUT 2016-03-23 15:55:38.760 INFO 14 --- [ost-startStop-1] o.s.b.c.embedded.FilterRegistrationBean : Mapping filter: 'applicationContextIdFilter' to: [/*]
+2016-03-23T15:50:08.000+00:00 [API] OUT App instance exited with guid 108c3e83-88ff-43af-a5b6-b356d346e0b8 payload: {"instance"=>"dc7e216e-e776-4bec-7155-98c8f1650298", "index"=>1, "reason"=>"CRASHED", "exit_description"=>"2 error(s) occurred:\n\n* 2 error(s) occurred:\n\n* Exited with status 255\n* cancelled\n* cancelled", "crash_count"=>1, "crash_timestamp"=>1458748208680686728, "version"=>"d34837f0-cb42-498f-adf2-cc506df42a98"}  <3>
 ----
 <1> Just before issuing the `System.exit(1)` call, the application logs that the kill switch was clicked.
-<2> The (Go)Router logs the 502 error.
+<2> The Router logs the 502 error.
 <3> The API logs that an application instance exited due to a crash.
 ====
 
@@ -161,18 +167,16 @@ Also, if you're paying attention to the log tail, you'll see some interesting lo
 +
 ====
 ----
-2015-08-11T09:12:34.48-0400 [DEA/1]      OUT Starting app instance (index 3) with guid 347c3d6b-e386-439f-8fc8-a561d39ea7bb  <1>
-2015-08-11T09:12:38.06-0400 [App/3]      OUT [CONTAINER] org.apache.coyote.http11.Http11NioProtocol         INFO    Initializing ProtocolHandler ["http-nio-61285"]
-2015-08-11T09:12:38.07-0400 [App/3]      OUT [CONTAINER] org.apache.catalina.startup.Catalina               INFO    Initialization processed in 557 ms
-2015-08-11T09:12:38.08-0400 [App/3]      OUT [CONTAINER] org.apache.catalina.core.StandardService           INFO    Starting service Catalina
-2015-08-11T09:12:38.08-0400 [App/3]      OUT [CONTAINER] org.apache.catalina.core.StandardEngine            INFO    Starting Servlet Engine: Apache Tomcat/8.0.21
-2015-08-11T09:12:38.11-0400 [App/3]      OUT [CONTAINER] org.apache.catalina.startup.HostConfig             INFO    Deploying web application directory /home/vcap/app/.java-buildpack/tomcat/webapps/ROOT  <2>
+2016-03-23T15:55:37.000+00:00 [APP] OUT 2016-03-23 15:55:37.288 INFO 14 --- [ main] o.apache.catalina.core.StandardService : Starting service Tomcat <1>
+2016-03-23T15:55:37.000+00:00 [APP] OUT 2016-03-23 15:55:37.290 INFO 14 --- [ main] org.apache.catalina.core.StandardEngine : Starting Servlet Engine: Apache Tomcat/8.0.26
+2016-03-23T15:55:39.000+00:00 [APP] OUT 2016-03-23 15:55:39.616 INFO 14 --- [ main] org.hibernate.cfg.Environment : HHH000021: Bytecode provider name : javassist
+2016-03-23T15:55:40.000+00:00 [APP] OUT 2016-03-23 15:55:40.259 INFO 14 --- [ main] o.hibernate.annotations.common.Version : HCANN000001: Hibernate Commons Annotations {4.0.5.Final}
+2016-03-23T15:55:40.000+00:00 [APP] OUT 2016-03-23 15:55:40.811 INFO 14 --- [ main] org.hibernate.tool.hbm2ddl.SchemaUpdate : HHH000232: Schema update complete
 ----
-<1> The DEA indicates that it is starting another instance of the application as a result of the Health Manager observing a difference between the desired and actual state (i.e. running instances = 1 vs. running instances = 0).
-<2> The new application instance starts logging events as it starts up.
+<1> The new application instance starts logging events as it starts up.
 ====
 
-. Revisiting the *HOME PAGE* of the application (don't simply refresh the browser as you're still on the `/killSwitch` endpoint and you'll just kill the application again!) and you should see a fresh instance started:
+. Revisiting the *HOME PAGE* of the application (don't simply refresh the browser as you're still on the `/kill` endpoint and you'll just kill the application again!) and you should see a fresh instance started:
 +
 image::lab2.png[]
 
@@ -190,7 +194,7 @@ Take a look at the events that have transpired so far for our deployment of `wor
 ====
 ----
 $ cf events workshop
-Getting events for app workshop in org TELCO / space gammon as admin...
+Getting events for app workshop in org instructor-org / space development as instructor...
 
 time                          event                 actor      description
 2015-08-11T08:58:57.00-0400   app.crash             workshop   index: 0, reason: CRASHED, exit_description: app instance exited, exit_status: 255  <6>
@@ -215,7 +219,7 @@ Here we see the `app.create` event, which created our application's record and s
 +
 ----
 $ cf stop workshop
-Stopping app workshop in org TELCO / space gammon as admin...
+Stopping app workshop in org instructor-org / space development as instructor...
 OK
 ----
 
@@ -223,72 +227,64 @@ OK
 +
 ----
 $ cf events workshop
-Getting events for app workshop in org TELCO / space gammon as admin...
+Getting events for app workshop in org instructor-org / space development as instructor...
 
-time                          event                 actor      description
-2015-08-11T09:01:35.00-0400   audit.app.update      admin      state: STOPPED
-2015-08-11T08:58:57.00-0400   app.crash             workshop   index: 0, reason: CRASHED, exit_description: app instance exited, exit_status: 255
-2015-08-11T08:58:17.00-0400   audit.app.update      admin      instances: 5
-2015-08-11T08:58:11.00-0400   audit.app.update      admin
-2015-08-11T08:58:11.00-0400   audit.app.map-route   admin
-2015-08-11T08:54:35.00-0400   audit.app.update      admin      state: STARTED
-2015-08-11T08:54:22.00-0400   audit.app.update      admin
-2015-08-11T08:54:22.00-0400   audit.app.map-route   admin
-2015-08-11T08:54:19.00-0400   audit.app.create      admin      instances: 1, memory: 512, state: STOPPED, environment_json: PRIVATE DATA HIDDEN
+time                          event                 actor           description
+2015-08-11T09:01:35.00-0400   audit.app.update      instructor      state: STOPPED
+2015-08-11T08:58:57.00-0400   app.crash             workshop        index: 0, reason: CRASHED, exit_description: app instance exited, exit_status: 255
+2015-08-11T08:58:17.00-0400   audit.app.update      instructor      instances: 5
+2015-08-11T08:58:11.00-0400   audit.app.update      instructor
+2015-08-11T08:58:11.00-0400   audit.app.map-route   instructor
+2015-08-11T08:54:35.00-0400   audit.app.update      instructor      state: STARTED
+2015-08-11T08:54:22.00-0400   audit.app.update      instructor
+2015-08-11T08:54:22.00-0400   audit.app.map-route   instructor
+2015-08-11T08:54:19.00-0400   audit.app.create      instructor      instances: 1, memory: 512, state: STOPPED, environment_json: PRIVATE DATA HIDDEN
 ----
 
 . Start the application again:
 +
 ----
 $ cf start workshop
-Starting app workshop in org TELCO / space gammon as admin...
+Starting app workshop in org instructor-org / space development as instructor...
 
-0 of 5 instances running, 5 starting
-2 of 5 instances running, 3 starting
+0 of 3 instances running, 3 starting
+0 of 3 instances running, 3 starting
+0 of 3 instances running, 3 starting
+2 of 3 instances running, 1 starting
 
 App started
 
 
 OK
 
-App workshop was started using this command `JAVA_HOME=$PWD/.java-buildpack/open_jdk_jre JAVA_OPTS="-Djava.io.tmpdir=$TMPDIR -XX:OnOutOfMemoryError=$PWD/.java-buildpack/open_jdk_jre/bin/killjava.sh -Xmx382293K -Xms382293K -XX:MaxMetaspaceSize=64M -XX:MetaspaceSize=64M -Xss995K -Djava.security.egd=file:///dev/urandom -Daccess.logging.enabled=false -Dhttp.port=$PORT" $PWD/.java-buildpack/tomcat/bin/catalina.sh run`
+App workshop was started using this command `CALCULATED_MEMORY=$($PWD/.java-buildpack/open_jdk_jre/bin/java-buildpack-memory-calculator-2.0.1_RELEASE -memorySizes=metaspace:64m.. -memoryWeights=heap:75,metaspace:10,native:10,stack:5 -memoryInitials=heap:100%,metaspace:100% -totMemory=$MEMORY_LIMIT) && JAVA_OPTS="-Djava.io.tmpdir=$TMPDIR -XX:OnOutOfMemoryError=$PWD/.java-buildpack/open_jdk_jre/bin/killjava.sh $CALCULATED_MEMORY -Djava.security.egd=file:///dev/urandom" && SERVER_PORT=$PORT eval exec $PWD/.java-buildpack/open_jdk_jre/bin/java $JAVA_OPTS -cp $PWD/.:$PWD/.java-buildpack/spring_auto_reconfiguration/spring_auto_reconfiguration-1.10.0_RELEASE.jar org.springframework.boot.loader.JarLauncher`
 
-Showing health and status for app workshop in org TELCO / space gammon as admin...
+Showing health and status for app workshop in org instructor-org / space development as instructor...
 OK
 
 requested state: started
-instances: 5/5
-usage: 512M x 5 instances
-urls: workshop-subhepatic-retiredness.vert.fe.gopivotal.com, adam-app.vert.fe.gopivotal.com
-last uploaded: Tue Aug 11 12:54:33 UTC 2015
-stack: cflinuxfs2
-buildpack: java-buildpack=v3.0-offline-https://github.com/cloudfoundry/java-buildpack.git#3bd15e1 java-opts open-jdk-jre=1.8.0_40 spring-auto-reconfiguration=1.7.0_RELEASE tomcat-access-logging-support=2.4.0_RELEASE tomcat-instance=8.0.21 tomcat-lifecycle-support...
+instances: 3/3
+usage: 512M x 3 instances
+urls: workshop-haunted-slickenside.cfapps.io
+last uploaded: Mon Mar 21 21:38:44 UTC 2016
+stack: unknown
+buildpack: java-buildpack=v3.6-https://github.com/cloudfoundry/java-buildpack.git#5194155 java-main java-opts open-jdk-like-jre=1.8.0_73 open-jdk-like-memory-calculator=2.0.1_RELEASE spring-auto-reconfiguration=1.10.0_RELEASE
 
      state      since                    cpu    memory           disk           details
-#0   starting   2015-08-11 09:02:17 AM   0.0%   435.6M of 512M   144.4M of 1G
-#1   running    2015-08-11 09:02:26 AM   0.0%   406.3M of 512M   144.4M of 1G
-#2   running    2015-08-11 09:02:27 AM   0.0%   401.2M of 512M   144.4M of 1G
-#3   running    2015-08-11 09:02:26 AM   0.0%   403.9M of 512M   144.4M of 1G
-#4   starting   2015-08-11 09:02:17 AM   0.0%   398.2M of 512M   144.4M of 1G
+#0   starting   2016-03-23 11:21:06 AM   0.0%   374.9M of 512M   153.4M of 1G
+#1   running    2016-03-23 11:21:24 AM   0.1%   358.8M of 512M   153.4M of 1G
+#2   running    2016-03-23 11:21:23 AM   0.0%   696K of 512M     1.3M of 1G
 ----
 
 . And again, view the additional `app.update` event:
 +
 ----
 $ cf events workshop
-Getting events for app workshop in org TELCO / space gammon as admin...
+Getting events for app workshop in org instructor-org / space development as instructor...
 
-time                          event                 actor      description
-2015-08-11T09:02:17.00-0400   audit.app.update      admin      state: STARTED
-2015-08-11T09:01:35.00-0400   audit.app.update      admin      state: STOPPED
-2015-08-11T08:58:57.00-0400   app.crash             workshop   index: 0, reason: CRASHED, exit_description: app instance exited, exit_status: 255
-2015-08-11T08:58:17.00-0400   audit.app.update      admin      instances: 5
-2015-08-11T08:58:11.00-0400   audit.app.update      admin
-2015-08-11T08:58:11.00-0400   audit.app.map-route   admin
-2015-08-11T08:54:35.00-0400   audit.app.update      admin      state: STARTED
-2015-08-11T08:54:22.00-0400   audit.app.update      admin
-2015-08-11T08:54:22.00-0400   audit.app.map-route   admin
-2015-08-11T08:54:19.00-0400   audit.app.create      admin      instances: 1, memory: 512, state: STOPPED, environment_json: PRIVATE DATA HIDDEN
+time                          event                      actor               description
+2016-03-23T11:21:06.00-0500   audit.app.update           instructor          state: STARTED
+2016-03-23T11:20:57.00-0500   audit.app.update           instructor          state: STOPPED
 ----
 
 link:/README.adoc#hands-on-labs-materials[Course Materials home]
