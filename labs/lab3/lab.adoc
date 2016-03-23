@@ -110,7 +110,7 @@ image::lab1.png[]
 
 == HTTP Routing
 
-There are two ways to discover what routes, or HTTP URLs, are ampped to an application
+There are two ways to discover what routes, or HTTP URLs, are mapped to an application
 The first is available via the CLI. Just type:
 
 ----
