@@ -7,12 +7,14 @@ This lab will guide you through building a *BASIC* continuous delivery pipeline 
 == Initial Setup
 
 . Fork the Spring-Music repository. If you do not have a github account, you can skip this step and use my repository.
++
+----
+https:\\https://github.com/cloudfoundry-samples/spring-music.git
+----
 
-  `https:\\https://github.com/cloudfoundry-samples/spring-music.git`
+. Edit the `manifest.yml` at the root of the forked `spring-music` repository. Change the *host* from `${random-word}` to your initials. Jenkins does not like the special characters in the host field and will give an error.
   
-. Edit the manifest.yml at the root of the forked spring-music repository. Change the *host* from ${random-word} to your initials. Jenkins does not like the special characters in the host field and will give an error.
-  
-. Login to your Jenkins instance at https://jenkins-0.pcfsony.com with the same username and password that you use for CloudFoundry.
+. Login to your Jenkins instance at https://jenkins-0.pcf1.fe.gopivotal.com with the same username and password that you use for CloudFoundry or use your own version of Jenkins, whether public or private.
 
 . Navigate to your username folder.
 
@@ -21,7 +23,7 @@ This lab will guide you through building a *BASIC* continuous delivery pipeline 
 
 == Create the Build Job
 
-. Click *New Item*, give it the name *spring-music* and select ``Build a free-style software project.'' Then click +OK+.
+. Click *New Item*, give it the name `spring-music` and select *Build a free-style software project*. Then click *OK*.
 
 ===== Configure Git
 
@@ -31,13 +33,13 @@ This lab will guide you through building a *BASIC* continuous delivery pipeline 
 
 . Under *Build Environment*, select *Setup CloudFoundry CLI*.
 
-. Under *API Endpoint*, enter `https://api.pcfsony.com`.
+. Under *API Endpoint*, enter `https://api.pcf1.fe.gopivotal.com` or `https://api.run.pivotal.io`.
 
 . Check *Skip SSL Validation*.
 
 . Under *API Credentials* select the credentials you configured above.
 
-. Enter your Organization and Space for CloudFoundry.
+. Enter your Organization and Space for CloudFoundry, i.e. _studentXX-org_ and _development_, or your PWS account org and space.
 
 ===== Configure Gradle Build
 
@@ -53,13 +55,13 @@ This lab will guide you through building a *BASIC* continuous delivery pipeline 
 
 . In build file, enter `build.gradle`.
 
-. Check *Force GRADLE_USER_HOME to use workspace.
+. Check *Force GRADLE_USER_HOME to use workspace*.
 
 ===== Configure CF Push
 
 . Select *Add Post-build Action* and then *Push to CloudFoundry*.
 
-. Under *Target*, enter `https://api.pcfsony.com`.
+. Under *Target*, enter `https://api.pcf1.fe.gopivotal.com` or `https://api.run.pivotal.io`.
 
 . Under *Credentials* select the credentials you configured above.
 
