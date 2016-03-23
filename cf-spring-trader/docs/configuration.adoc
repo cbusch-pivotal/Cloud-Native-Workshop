@@ -4,17 +4,17 @@ One of the benefits of Spring Cloud Services is the ability to configure a runni
 
 ==== Set up the Git Repository
 
-. For the repository https://github.com/jtgammon/trader-config-repo.git
+. For the repository, you can use https://github.com/jtgammon/trader-config-repo.git or fork it so you can make changes.
 
 
 ==== Configure the Config-Server
 
-. Log into the console at https://console.pcfsony.com
+. Log into the console at https://console.run.pivotal.io or https://console.pcf1.fe.gopivotal.com, whichever is being used for this exercise.
 
 . In your space, under services, select *Manage* under the *config-server*.
 
 . Login, then select *Git*.
 
-. Enter the repository https://github.com/<your-git-username>/trader-config-repo.git
+. Enter the repository https://github.com/jtgammon/trader-config-repo.git or your repo: https://github.com/<your-git-username>/trader-config-repo.git
 
 
