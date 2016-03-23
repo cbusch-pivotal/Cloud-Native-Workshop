@@ -1,2 +1,8 @@
 *.DS_Store
 labs/.DS_Store
+
+.gradle/
+springboottrades-accounts/
+springboottrades-portfolio/
+springboottrades-quotes/
+springboottrades-web/
